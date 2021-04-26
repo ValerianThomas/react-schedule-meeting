@@ -385,7 +385,7 @@ const ArrowButton = styled__default['default'].button `
     background: rgba(0, 0, 0, 0.03);
   }
 `;
-const ScheduleMeeting = ({ availableTimeslots = [], borderRadius = 0, primaryColor = '#3f5b85', emptyListContentEl, eventStartTimeSpreadInMinutes = 0, eventDurationInMinutes = 30, onSelectedDayChange, onStartTimeSelect, scheduleMeetingStyles, }) => {
+const ScheduleMeeting = ({ availableTimeslots = [], borderRadius = 0, primaryColor = '#3f5b85', emptyListContentEl, eventStartTimeSpreadInMinutes = 0, eventDurationInMinutes = 30, onSelectedDayChange, onStartTimeSelect, scheduleMeetingStyles, initialDisplayDay, }) => {
     const [r, g, b, alpha] = rgba__default['default'](primaryColor) || [0, 0, 0, 1];
     const primaryColorRGB = `rgba(${r},${g},${b},${alpha})`;
     const primaryColorFaded = `rgba(${r},${g},${b},${alpha / 9})`;
@@ -442,8 +442,12 @@ const ScheduleMeeting = ({ availableTimeslots = [], borderRadius = 0, primaryCol
                 startTimesPossible--;
             }
         }
+        // set initial display date
+        if (initialDisplayDay) {
+            setSelectedDay(initialDisplayDay);
+        }
         setStartTimeEventsList(startTimeEvents);
-    }, [availableTimeslots, eventDurationInMinutes, eventStartTimeSpreadInMinutes]);
+    }, [availableTimeslots, eventDurationInMinutes, eventStartTimeSpreadInMinutes, initialDisplayDay]);
     React.useEffect(() => {
         const startTimeEventsToDisplay = [];
         // filter out startTimeEvents so we get the list of ones to display next to the calendar

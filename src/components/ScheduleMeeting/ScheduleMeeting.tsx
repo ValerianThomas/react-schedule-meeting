@@ -136,6 +136,7 @@ type Props = {
   emptyListContentEl?: React.ElementType;
   borderRadius?: number;
   primaryColor?: string;
+  initialDisplayDay?: Date;
 };
 
 export const ScheduleMeeting: React.FC<Props> = ({
@@ -148,6 +149,7 @@ export const ScheduleMeeting: React.FC<Props> = ({
   onSelectedDayChange,
   onStartTimeSelect,
   scheduleMeetingStyles,
+  initialDisplayDay,
 }) => {
   const [r, g, b, alpha] = rgba(primaryColor) || [0, 0, 0, 1];
   const primaryColorRGB = `rgba(${r},${g},${b},${alpha})`;
@@ -233,9 +235,12 @@ export const ScheduleMeeting: React.FC<Props> = ({
         startTimesPossible--;
       }
     }
-
+    // set initial display date
+    if (initialDisplayDay) {
+      setSelectedDay(initialDisplayDay);
+    }
     setStartTimeEventsList(startTimeEvents);
-  }, [availableTimeslots, eventDurationInMinutes, eventStartTimeSpreadInMinutes]);
+  }, [availableTimeslots, eventDurationInMinutes, eventStartTimeSpreadInMinutes, initialDisplayDay]);
 
   useEffect(() => {
     const startTimeEventsToDisplay: StartTimeEvent[] = [];

@@ -25,6 +25,7 @@ declare type Props = {
     emptyListContentEl?: React.ElementType;
     borderRadius?: number;
     primaryColor?: string;
+    initialDisplayDay?: Date;
 };
 export declare const ScheduleMeeting: React.FC<Props>;
 export {};
