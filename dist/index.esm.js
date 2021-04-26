@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from 'react';
 import React__default, { useState, useEffect } from 'react';
 import { isValid, getDay, format, startOfMonth, differenceInMinutes, addMinutes, isSameDay, isSameMinute, isPast, subMonths, addMonths, subDays, addDays } from 'date-fns';
